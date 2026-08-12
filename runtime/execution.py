@@ -47,8 +47,8 @@ class PaperExecutionEngine:
         now = datetime.now(timezone.utc).isoformat()
         requested = quote.ask if signal.direction == "LONG" else quote.bid
         signed_slippage = self.slippage if signal.direction == "LONG" else -self.slippage
-        fill_price = requested + signed_slippage
-        slippage = fill_price - requested
+        slippage = round(signed_slippage, 5)
+        fill_price = round(requested + slippage, 5)
         order = Order(f"PAPER-EURUSD-{self._counter:06d}", "EURUSD", signal.direction, risk.units, requested, now)
         fill = Fill(order.order_id, fill_price, risk.units, slippage, quote.spread, self.latency_ms, now)
         return order, fill
