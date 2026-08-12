@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Work Unit",
+  "type": "object",
+  "required": ["id", "name", "version", "status", "instrument", "tasks"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^WU-[A-Z0-9-]+$"},
+    "name": {"type": "string"},
+    "version": {"type": "string"},
+    "status": {"type": "string"},
+    "instrument": {"const": "EURUSD"},
+    "tasks": {"type": "array", "items": {"type": "string"}}
+  }
+}
