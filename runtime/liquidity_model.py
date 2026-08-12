@@ -49,10 +49,7 @@ class LiquidityRouter:
         provider = max(available, key=lambda p: p.available_units)
         requested = quote.ask if signal.direction == "LONG" else quote.bid
         filled = min(units, provider.available_units)
-        if filled < units:
-            status = "PARTIAL"
-        else:
-            status = "FILLED"
+        status = "PARTIAL" if filled < units else "FILLED"
         signed_offset = provider.price_offset if signal.direction == "LONG" else -provider.price_offset
-        return RoutedLiquidity(provider.provider_id, units, filled, requested,
-                                requested + signed_offset if filled else None, status)
+        fill_price = round(requested + signed_offset, 10) if filled else None
+        return RoutedLiquidity(provider.provider_id, units, filled, requested, fill_price, status)
