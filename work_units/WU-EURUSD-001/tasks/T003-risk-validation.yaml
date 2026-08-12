@@ -1,0 +1,17 @@
+id: T003-risk-validation
+work_unit: WU-EURUSD-001
+purpose: Validate a proposed EUR/USD trade against hard risk controls.
+inputs:
+  - signal_proposal
+  - account_state
+  - trading_policy
+skills:
+  - position-sizing
+  - risk-validation
+outputs:
+  - risk_decision
+  - approved_order_spec
+validation:
+  - risk_within_policy
+  - max_open_positions_not_exceeded
+  - live_execution_disabled
