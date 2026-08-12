@@ -58,5 +58,4 @@ class BrokerExecutionModel:
             slip = -slip
         fill = requested + slip
         return ExecutionReport(order_id, requested, fill, effective_spread,
-                               fill - requested, self.base_latency_ms,
-                               "FILLED", conditions.mode.value)
+                               slip, self.base_latency_ms, "FILLED", conditions.mode.value)
