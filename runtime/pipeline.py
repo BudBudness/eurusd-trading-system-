@@ -32,8 +32,8 @@ class PaperExecution:
     """Deterministic paper executor. Never sends broker orders."""
 
     def execute(self, proposal: TradeProposal, policy: TradingPolicy) -> dict[str, Any]:
-        if getattr(policy, "live_trading_enabled", False):
-            raise RuntimeError("paper executor cannot be used when live trading is enabled")
+        if policy.live_execution_enabled:
+            raise RuntimeError("paper executor cannot be used when live execution is enabled")
         return {
             "mode": "paper",
             "symbol": proposal.symbol,
@@ -46,7 +46,7 @@ class PaperExecution:
 
 
 def run_paper_cycle(state: StateStore, policy: TradingPolicy, snapshot: MarketSnapshot) -> dict[str, Any]:
-    if snapshot.symbol != "EURUSD":
+    if snapshot.symbol != policy.instrument:
         raise ValueError("only EURUSD is supported")
     if snapshot.volatility == "extreme":
         state.emit(Event("ENTRY_HALTED", "WU-EURUSD-001", actor="risk", payload={"reason": "extreme_volatility"}))
@@ -59,7 +59,7 @@ def run_paper_cycle(state: StateStore, policy: TradingPolicy, snapshot: MarketSn
         entry=entry,
         stop=entry - 0.0010,
         target=entry + 0.0020,
-        risk_pct=min(policy.max_trade_risk_pct, 0.50),
+        risk_pct=policy.max_trade_risk_pct,
     )
     state.emit(Event("SIGNAL_CREATED", "WU-EURUSD-001", task_id="T002", actor="strategy",
                      payload={"side": proposal.side, "entry": proposal.entry}))
