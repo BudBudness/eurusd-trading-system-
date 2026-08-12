@@ -1,0 +1,23 @@
+id: T005-post-trade-analysis
+work_unit: WU-EURUSD-001
+purpose: Evaluate strategy outcome and execution quality.
+inputs:
+  - execution_record
+  - trade_record
+skills:
+  - execution-analysis
+  - expectancy-analysis
+outputs:
+  - trade_report
+  - analytics_report
+metrics:
+  - spread
+  - commission
+  - slippage
+  - latency
+  - win_loss
+  - r_multiple
+  - expectancy
+validation:
+  - complete_trade_record
+  - provenance_present
