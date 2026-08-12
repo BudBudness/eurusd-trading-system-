@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task",
+  "type": "object",
+  "required": ["id", "work_unit", "purpose", "inputs", "outputs"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^T[0-9]+-[a-z0-9-]+$"},
+    "work_unit": {"type": "string"},
+    "purpose": {"type": "string"},
+    "inputs": {"type": "array", "items": {"type": "string"}},
+    "outputs": {"type": "array", "items": {"type": "string"}}
+  }
+}
