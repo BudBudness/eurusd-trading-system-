@@ -1,0 +1,21 @@
+instrument: EURUSD
+platform: cTrader
+broker: Pepperstone
+mode: research
+
+risk:
+  max_trade_risk_pct: 0.50
+  max_daily_loss_pct: 2.00
+  max_open_positions: 1
+
+execution:
+  require_risk_approval: true
+  live_trading_enabled: false
+  extreme_volatility_action: halt_new_entries
+  credentials_in_repository: false
+
+timeframes:
+  macro: 4H
+  structure: 1H
+  setup: 15M
+  execution: 5M
