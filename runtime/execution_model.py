@@ -53,9 +53,9 @@ class BrokerExecutionModel:
             return ExecutionReport(order_id, requested, None, effective_spread, None,
                                    self.base_latency_ms, "REJECTED", "execution conditions rejected order")
 
-        slip = self.base_slippage * conditions.slippage_multiplier
+        slip = round(self.base_slippage * conditions.slippage_multiplier, 5)
         if signal.direction == "SHORT":
             slip = -slip
-        fill = requested + slip
+        fill = round(requested + slip, 5)
         return ExecutionReport(order_id, requested, fill, effective_spread,
                                slip, self.base_latency_ms, "FILLED", conditions.mode.value)
