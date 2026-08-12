@@ -15,7 +15,8 @@ class Quote:
 
     @property
     def spread(self) -> float:
-        return self.ask - self.bid
+        # Normalize floating-point representation for pip/spread comparisons.
+        return round(self.ask - self.bid, 10)
 
 
 @dataclass(frozen=True)
