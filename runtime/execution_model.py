@@ -56,6 +56,6 @@ class BrokerExecutionModel:
         slip = round(self.base_slippage * conditions.slippage_multiplier, 5)
         if signal.direction == "SHORT":
             slip = -slip
-        fill = round(requested + slip, 5)
+        fill = requested + slip
         return ExecutionReport(order_id, requested, fill, effective_spread,
                                slip, self.base_latency_ms, "FILLED", conditions.mode.value)
