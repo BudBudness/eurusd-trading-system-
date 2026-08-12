@@ -1,0 +1,41 @@
+id: WU-EURUSD-001
+name: EUR/USD execution and strategy work unit
+version: 1.0
+status: ready
+instrument: EURUSD
+broker: Pepperstone
+platform: cTrader
+mode: research
+objective: >-
+  Analyse EUR/USD market conditions, propose rule-compliant setups,
+  validate risk, execute only through an approved non-live path,
+  and capture complete execution and post-trade evidence.
+
+timeframes:
+  macro: 4H
+  structure: 1H
+  setup: 15M
+  execution: 5M
+
+tasks:
+  - T001-market-state
+  - T002-setup-detection
+  - T003-risk-validation
+  - T004-execution-simulation
+  - T005-post-trade-analysis
+
+required_skills:
+  - market-structure
+  - volatility-analysis
+  - setup-detection
+  - position-sizing
+  - risk-validation
+  - execution-analysis
+  - expectancy-analysis
+
+outputs:
+  - signal
+  - risk-decision
+  - execution-record
+  - trade-report
+  - analytics-report
