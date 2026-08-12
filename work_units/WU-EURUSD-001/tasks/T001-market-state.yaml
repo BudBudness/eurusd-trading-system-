@@ -1,0 +1,14 @@
+id: T001-market-state
+work_unit: WU-EURUSD-001
+purpose: Build a normalized EUR/USD market-state snapshot.
+inputs:
+  - market data
+  - trading policy
+skills:
+  - market-structure
+  - volatility-analysis
+outputs:
+  - market_state
+validation:
+  - schema_valid
+  - data_fresh
